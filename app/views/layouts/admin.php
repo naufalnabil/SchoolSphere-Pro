@@ -20,31 +20,10 @@
 <?php else: ?>
     <!-- Layout untuk Dashboard & Konten Admin -->
     <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <div class="admin-sidebar__brand">
-                <svg width="24" height="24" viewBox="0 0 36 36" fill="none">
-                    <rect width="36" height="36" rx="8" fill="currentColor" opacity="0.1"/>
-                    <path d="M18 8L22 14H26L22 19L24 26L18 22L12 26L14 19L10 14H14L18 8Z" fill="currentColor"/>
-                </svg>
-                SchoolSphere Admin
-            </div>
-            <nav>
-                <ul class="admin-nav">
-                    <li><a href="?page=admin-dashboard" class="admin-nav__link admin-nav__link--active">Dashboard</a></li>
-                    <!-- Menu CMS akan ditambahkan di tahap selanjutnya -->
-                    <li><a href="?page=home" class="admin-nav__link" target="_blank" style="margin-top: var(--sp-6);">Buka Website ↗</a></li>
-                </ul>
-            </nav>
-        </aside>
+        <?php include __DIR__ . '/../../components/admin/sidebar.php'; ?>
+        
         <main class="admin-main">
-            <header class="admin-header">
-                <h1 class="admin-title"><?= isset($pageTitle) ? e($pageTitle) : 'Dashboard' ?></h1>
-                <div class="admin-user">
-                    <?php $user = current_admin_user(); ?>
-                    <span>Halo, <strong><?= e($user['name'] ?? 'Admin') ?></strong></span>
-                    <a href="?page=admin-logout" class="btn btn--outline btn--sm">Keluar</a>
-                </div>
-            </header>
+            <?php include __DIR__ . '/../../components/admin/topbar.php'; ?>
             
             <div class="admin-content">
                 <?= $content ?? '' ?>
@@ -53,5 +32,6 @@
     </div>
 <?php endif; ?>
 
+<script src="assets/js/admin.js"></script>
 </body>
 </html>

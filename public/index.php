@@ -45,7 +45,17 @@ $validPages = [
     'admin-setup',
     'admin-login',
     'admin-logout',
-    'admin-dashboard'
+    'admin-dashboard',
+    'admin-site-identity',
+    'admin-homepage',
+    'admin-profile',
+    'admin-news',
+    'admin-announcements',
+    'admin-gallery',
+    'admin-services',
+    'admin-navigation',
+    'admin-theme',
+    'admin-settings'
 ];
 
 // Fallback ke 404 jika halaman tidak valid
@@ -139,9 +149,35 @@ switch ($page) {
         exit;
 
     case 'admin-dashboard':
+    case 'admin-site-identity':
+    case 'admin-homepage':
+    case 'admin-profile':
+    case 'admin-news':
+    case 'admin-announcements':
+    case 'admin-gallery':
+    case 'admin-services':
+    case 'admin-navigation':
+    case 'admin-theme':
+    case 'admin-settings':
         require_admin_login();
-        $pageTitle = 'Dashboard Admin';
-        render_view('admin/dashboard.php', ['isAuthPage' => false, 'pageTitle' => $pageTitle], 'admin.php');
+        
+        $adminPages = [
+            'admin-dashboard' => ['title' => 'Dashboard', 'view' => 'dashboard'],
+            'admin-site-identity' => ['title' => 'Identitas Sekolah', 'view' => 'site-identity'],
+            'admin-homepage' => ['title' => 'Beranda', 'view' => 'homepage'],
+            'admin-profile' => ['title' => 'Profil', 'view' => 'profile'],
+            'admin-news' => ['title' => 'Berita', 'view' => 'news'],
+            'admin-announcements' => ['title' => 'Pengumuman', 'view' => 'announcements'],
+            'admin-gallery' => ['title' => 'Galeri', 'view' => 'gallery'],
+            'admin-services' => ['title' => 'Layanan / Tautan', 'view' => 'services'],
+            'admin-navigation' => ['title' => 'Navigasi Menu', 'view' => 'navigation'],
+            'admin-theme' => ['title' => 'Tema Tampilan', 'view' => 'theme'],
+            'admin-settings' => ['title' => 'Pengaturan', 'view' => 'settings'],
+        ];
+
+        $pageTitle = $adminPages[$page]['title'];
+        $viewFile = 'admin/' . $adminPages[$page]['view'] . '.php';
+        render_view($viewFile, ['isAuthPage' => false, 'pageTitle' => $pageTitle, 'activePage' => $page], 'admin.php');
         break;
     case 'db-check':
         // Halaman test koneksi khusus development
