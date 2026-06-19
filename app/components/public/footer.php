@@ -107,11 +107,7 @@ $email       = $site['email'] ?? '';
                 <!-- Kolom 4: Tautan Eksternal -->
                 <div class="footer__col">
                     <h4 class="footer__heading">Tautan Terkait</h4>
-                    <ul class="footer__links">
-                        <li><a href="#" class="footer__link">Kementerian Pendidikan</a></li>
-                        <li><a href="#" class="footer__link">Dinas Pendidikan Provinsi</a></li>
-                        <li><a href="#" class="footer__link">Portal NISN</a></li>
-                    </ul>
+                    <p class="footer__empty">Tautan instansi terkait akan ditambahkan pada tahap berikutnya.</p>
                 </div>
 
             </div>

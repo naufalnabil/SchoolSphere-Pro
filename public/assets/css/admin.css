@@ -1,0 +1,170 @@
+/**
+ * SchoolSphere-Pro — Admin CSS
+ * Styling khusus untuk panel administrasi.
+ */
+
+:root {
+    --admin-sidebar-width: 260px;
+    --admin-bg: #f8fafc;
+    --admin-surface: #ffffff;
+    --admin-border: #e2e8f0;
+}
+
+body {
+    background-color: var(--admin-bg);
+    color: var(--clr-text-base);
+}
+
+/* ==========================================================================
+   Admin Layout Shell
+   ========================================================================== */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    width: var(--admin-sidebar-width);
+    background-color: var(--admin-surface);
+    border-right: 1px solid var(--admin-border);
+    padding: var(--sp-6) var(--sp-4);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.admin-sidebar__brand {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    color: var(--clr-brand-primary);
+    margin-bottom: var(--sp-8);
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+.admin-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+}
+
+.admin-nav__link {
+    display: block;
+    padding: var(--sp-3) var(--sp-4);
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-weight: 500;
+}
+
+.admin-nav__link:hover, .admin-nav__link--active {
+    background-color: #eff6ff; /* blue-50 */
+    color: var(--clr-brand-primary);
+}
+
+.admin-main {
+    flex-grow: 1;
+    padding: var(--sp-8);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--sp-8);
+    padding-bottom: var(--sp-4);
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-title {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-4);
+}
+
+/* ==========================================================================
+   Admin Components
+   ========================================================================== */
+
+.admin-card {
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-6);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.admin-alert {
+    padding: var(--sp-4);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--sp-6);
+    font-weight: 500;
+}
+
+.admin-alert--error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.admin-alert--success {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+/* ==========================================================================
+   Auth Layout (Login & Setup)
+   ========================================================================== */
+
+.admin-layout--auth {
+    align-items: center;
+    justify-content: center;
+    background-color: var(--admin-bg);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-8);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .admin-layout:not(.admin-layout--auth) {
+        flex-direction: column;
+    }
+    .admin-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--admin-border);
+        padding: var(--sp-4);
+    }
+    .admin-sidebar__brand {
+        margin-bottom: var(--sp-4);
+    }
+    .admin-main {
+        padding: var(--sp-4);
+    }
+}

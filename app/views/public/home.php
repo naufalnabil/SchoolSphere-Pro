@@ -20,10 +20,10 @@
         <div class="hero__content">
             <span class="hero__eyebrow">Website Resmi Sekolah</span>
             <h1 class="hero__title">
-                Membangun <span class="hero__title-accent">Generasi Cerdas</span> Berkarakter & Berprestasi
+                <?= isset($site['hero_title']) && $site['hero_title'] !== '' ? $site['hero_title'] : 'Membangun <span class="hero__title-accent">Generasi Cerdas</span> Berkarakter & Berprestasi' ?>
             </h1>
             <p class="hero__desc">
-                Selamat datang di website resmi sekolah kami. Identitas, profil, dan informasi kegiatan sekolah akan diatur secara lengkap pada tahap berikutnya.
+                <?= isset($site['hero_subtitle']) && $site['hero_subtitle'] !== '' ? e($site['hero_subtitle']) : 'Selamat datang di website resmi sekolah kami. Identitas, profil, dan informasi kegiatan sekolah akan diatur secara lengkap pada tahap berikutnya.' ?>
             </p>
             <div class="hero__actions">
                 <a href="?page=profil" class="btn btn--primary btn--lg">
@@ -81,107 +81,39 @@
 </section>
 
 <!-- ════════════════════════════════════════════
-     PROFIL SEKOLAH (SHELL)
+     MODULAR SECTIONS (CONDITIONALLY RENDERED)
      ════════════════════════════════════════════ -->
-<section class="section section--tone-soft" id="profil">
-    <div class="container">
-        <div class="section-header section-header--centered">
-            <div class="section-header__text">
-                <span class="section-header__eyebrow">Tentang Kami</span>
-                <h2 class="section-header__title">Profil Sekolah</h2>
-                <p class="section-header__desc">
-                    Identitas sekolah akan diatur pada tahap berikutnya.
-                </p>
-            </div>
-        </div>
-        <div class="grid grid--3 reveal reveal-stagger">
-            <div class="card card--soft">
-                <div class="card__icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-                    </svg>
-                </div>
-                <h3 class="card__title">Visi & Misi</h3>
-                <p class="card__desc">Konten akan tersedia pada tahap berikutnya.</p>
-            </div>
-            <div class="card card--soft">
-                <div class="card__icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                    </svg>
-                </div>
-                <h3 class="card__title">Tenaga Pendidik</h3>
-                <p class="card__desc">Konten akan tersedia pada tahap berikutnya.</p>
-            </div>
-            <div class="card card--soft">
-                <div class="card__icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
-                    </svg>
-                </div>
-                <h3 class="card__title">Prestasi</h3>
-                <p class="card__desc">Konten akan tersedia pada tahap berikutnya.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
-<!-- ════════════════════════════════════════════
-     LAYANAN DIGITAL (SHELL)
-     ════════════════════════════════════════════ -->
-<section class="section section--tone-white" id="layanan">
-    <div class="container">
-        <div class="section-header section-header--centered">
-            <div class="section-header__text">
-                <span class="section-header__eyebrow">Fasilitas</span>
-                <h2 class="section-header__title">Layanan Digital</h2>
-                <p class="section-header__desc">
-                    Identitas sekolah akan diatur pada tahap berikutnya.
-                </p>
-            </div>
-        </div>
-        <div class="grid grid--4 reveal reveal-stagger">
-            <?php for ($i = 0; $i < 4; $i++): ?>
-                <div class="card card--hover text-center">
-                    <div class="card__icon" style="margin: 0 auto var(--sp-4);">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-                        </svg>
-                    </div>
-                    <h4 class="card__title">Layanan <?= $i + 1 ?></h4>
-                    <p class="card__desc">Konten shell</p>
-                </div>
-            <?php endfor; ?>
-        </div>
-    </div>
-</section>
+<?php
+$sections = $site['homepage_sections'] ?? [];
 
-<!-- ════════════════════════════════════════════
-     BERITA & PENGUMUMAN (SHELL)
-     ════════════════════════════════════════════ -->
-<section class="section section--tone-soft" id="berita">
-    <div class="container">
-        <div class="section-header section-header--split">
-            <div class="section-header__text">
-                <span class="section-header__eyebrow">Informasi</span>
-                <h2 class="section-header__title">Berita & Pengumuman</h2>
-            </div>
-            <div class="section-header__action">
-                <a href="#" class="btn btn--outline btn--sm">Lihat Semua</a>
-            </div>
-        </div>
-        <div class="grid grid--3 reveal reveal-stagger">
-            <?php for ($i = 0; $i < 3; $i++): ?>
-                <div class="card card--hover">
-                    <div class="card__icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-                        </svg>
-                    </div>
-                    <h4 class="card__title">Berita Utama <?= $i + 1 ?></h4>
-                    <p class="card__desc">Identitas sekolah akan diatur pada tahap berikutnya.</p>
-                </div>
-            <?php endfor; ?>
-        </div>
-    </div>
-</section>
+// Profil Sekolah
+if ($sections['profile'] ?? true) {
+    require component_path('public/sections/profile-section.php');
+}
+
+// Layanan Sekolah
+if ($sections['services'] ?? true) {
+    require component_path('public/sections/services-section.php');
+}
+
+// Pengumuman
+if ($sections['announcements'] ?? true) {
+    require component_path('public/sections/announcements-section.php');
+}
+
+// Berita
+if ($sections['news'] ?? true) {
+    require component_path('public/sections/news-section.php');
+}
+
+// Galeri
+if ($sections['gallery'] ?? true) {
+    require component_path('public/sections/gallery-section.php');
+}
+
+// Kontak
+if ($sections['contact'] ?? true) {
+    require component_path('public/sections/contact-section.php');
+}
+?>

@@ -30,6 +30,7 @@ public/media/
 *.sql
 *.sqlite
 *.db
+!database/schema/*.sql
 
 # Temporary files
 tmp/

@@ -702,7 +702,17 @@ small {
     height: 2px;
     background: var(--clr-text);
     border-radius: var(--radius-pill);
-    transition: transform var(--motion-normal), opacity var(--motion-fast);
+    transition: transform var(--motion-normal) var(--easing-smooth), opacity var(--motion-fast);
+}
+
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+.navbar__toggle[aria-expanded="true"] .navbar__toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ==========================================================================
@@ -761,6 +771,17 @@ small {
     padding: var(--sp-5) var(--sp-6);
     border-bottom: 1px solid var(--clr-border-light);
     flex-shrink: 0;
+    
+    /* Animation prepare */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--motion-normal), transform var(--motion-normal) var(--easing-smooth);
+}
+
+.drawer--open .drawer__header {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 150ms;
 }
 
 .drawer__brand {
@@ -797,7 +818,8 @@ small {
 }
 
 .drawer__link {
-    display: block;
+    display: flex;
+    align-items: center;
     padding: var(--sp-3) var(--sp-4);
     font-size: var(--text-base);
     font-weight: var(--weight-medium);
@@ -805,9 +827,20 @@ small {
     border-radius: var(--radius-md);
     transition: color var(--motion-fast), background var(--motion-fast);
     min-height: 44px;
-    display: flex;
-    align-items: center;
+    
+    /* Animation prepare */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity var(--motion-normal), transform var(--motion-normal) var(--easing-smooth), color var(--motion-fast), background var(--motion-fast);
 }
+
+.drawer--open .drawer__menu li:nth-child(1) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 200ms, 200ms, 0ms, 0ms; }
+.drawer--open .drawer__menu li:nth-child(2) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 250ms, 250ms, 0ms, 0ms; }
+.drawer--open .drawer__menu li:nth-child(3) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 300ms, 300ms, 0ms, 0ms; }
+.drawer--open .drawer__menu li:nth-child(4) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 350ms, 350ms, 0ms, 0ms; }
+.drawer--open .drawer__menu li:nth-child(5) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 400ms, 400ms, 0ms, 0ms; }
+.drawer--open .drawer__menu li:nth-child(6) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 450ms, 450ms, 0ms, 0ms; }
+.drawer--open .drawer__menu li:nth-child(7) .drawer__link { opacity: 1; transform: translateY(0); transition-delay: 500ms, 500ms, 0ms, 0ms; }
 
 .drawer__link:hover {
     color: var(--clr-primary);
@@ -1505,13 +1538,15 @@ small {
 }
 
 .footer__link {
+    display: inline-block;
     font-size: var(--text-sm);
     color: hsla(0, 0%, 100%, 0.5);
-    transition: color var(--motion-fast);
+    transition: color var(--motion-fast), transform var(--motion-fast) var(--easing-smooth);
 }
 
 .footer__link:hover {
     color: var(--clr-text-inverse);
+    transform: translateX(4px);
 }
 
 .footer__info-item {
@@ -1655,6 +1690,13 @@ small {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+    
+    /* Reset stagger states so they are visible immediately */
+    .drawer__header, .drawer__link {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 
     .reveal {

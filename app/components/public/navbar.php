@@ -68,41 +68,42 @@ $currentPage = $activePage ?? 'home';
         </button>
     </div>
 
-    <!-- Mobile Drawer -->
-    <div class="drawer" id="mobile-drawer" aria-hidden="true">
-        <div class="drawer__overlay" id="drawer-overlay"></div>
-        <div class="drawer__panel">
-            <div class="drawer__header">
-                <span class="drawer__brand"><?= $siteName ?></span>
-                <button class="drawer__close" id="drawer-close" aria-label="Tutup menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                </button>
-            </div>
-            <nav class="drawer__nav" aria-label="Menu mobile">
-                <ul class="drawer__menu">
-                    <?php foreach ($navMenus as $menu): ?>
-                        <?php
-                            $menuUrl = $menu['url'] ?? '#';
-                            $menuLabel = e($menu['label'] ?? '');
-                            $pageParam = '';
-                            if (preg_match('/page=([^&]+)/', $menuUrl, $m)) {
-                                $pageParam = $m[1];
-                            }
-                            $isActive = ($pageParam === $currentPage);
-                        ?>
-                        <li>
-                            <a href="<?= e($menuUrl) ?>"
-                               class="drawer__link<?= $isActive ? ' drawer__link--active' : '' ?>"
-                               <?= $isActive ? 'aria-current="page"' : '' ?>>
-                                <?= $menuLabel ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            </nav>
-        </div>
-    </div>
 </header>
+
+<!-- Mobile Drawer -->
+<div class="drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer__overlay" id="drawer-overlay"></div>
+    <div class="drawer__panel">
+        <div class="drawer__header">
+            <span class="drawer__brand"><?= $siteName ?></span>
+            <button class="drawer__close" id="drawer-close" aria-label="Tutup menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <nav class="drawer__nav" aria-label="Menu mobile">
+            <ul class="drawer__menu">
+                <?php foreach ($navMenus as $menu): ?>
+                    <?php
+                        $menuUrl = $menu['url'] ?? '#';
+                        $menuLabel = e($menu['label'] ?? '');
+                        $pageParam = '';
+                        if (preg_match('/page=([^&]+)/', $menuUrl, $m)) {
+                            $pageParam = $m[1];
+                        }
+                        $isActive = ($pageParam === $currentPage);
+                    ?>
+                    <li>
+                        <a href="<?= e($menuUrl) ?>"
+                           class="drawer__link<?= $isActive ? ' drawer__link--active' : '' ?>"
+                           <?= $isActive ? 'aria-current="page"' : '' ?>>
+                            <?= $menuLabel ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </nav>
+    </div>
+</div>
