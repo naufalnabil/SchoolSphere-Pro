@@ -104,13 +104,13 @@ $email       = $site['email'] ?? '';
                     <?php endif; ?>
                 </div>
 
-                <!-- Kolom 4: Info Pengembangan -->
+                <!-- Kolom 4: Tautan Eksternal -->
                 <div class="footer__col">
-                    <h4 class="footer__heading">Tentang Sistem</h4>
+                    <h4 class="footer__heading">Tautan Terkait</h4>
                     <ul class="footer__links">
-                        <li><span class="footer__info-item">PHP Native Modular</span></li>
-                        <li><span class="footer__info-item">Laragon + MySQL</span></li>
-                        <li><span class="footer__info-item">Frontend-First</span></li>
+                        <li><a href="#" class="footer__link">Kementerian Pendidikan</a></li>
+                        <li><a href="#" class="footer__link">Dinas Pendidikan Provinsi</a></li>
+                        <li><a href="#" class="footer__link">Portal NISN</a></li>
                     </ul>
                 </div>
 
@@ -123,7 +123,7 @@ $email       = $site['email'] ?? '';
         <div class="container">
             <div class="footer__bottom-inner">
                 <p class="footer__copyright">
-                    &copy; <?= date('Y') ?> <?= $siteName ?>. Development build.
+                    &copy; <?= date('Y') ?> <?= $siteName ?>. Hak cipta dilindungi.
                 </p>
                 <p class="footer__credit">
                     <small>Powered by SchoolSphere-Pro</small>

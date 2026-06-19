@@ -30,6 +30,10 @@ $page = $_GET['page'] ?? 'home';
 // Whitelist halaman yang valid (akan bertambah seiring tahap)
 $validPages = [
     'home',
+    'dev',
+    'progress',
+    'design-system',
+    'kontak'
 ];
 
 // Fallback ke home jika halaman tidak valid
@@ -39,18 +43,48 @@ if (!in_array($page, $validPages, true)) {
 
 // ── Controller Sederhana ───────────────────────────────────
 
-switch ($page) {
-    case 'home':
-    default:
-        $pageTitle = $config['name'] . ' — Website Sekolah Modular';
-        $metaDescription = 'Platform website sekolah modular yang tampil premium, mudah dikelola, dan siap dikembangkan secara bertahap.';
+$commonData = [
+    'config'     => $config,
+    'site'       => $site,
+    'activePage' => $page,
+];
 
-        render_view('public/home.php', [
+switch ($page) {
+    case 'dev':
+    case 'progress':
+        $pageTitle = 'Development Progress — ' . $config['name'];
+        $metaDescription = 'Halaman internal progress development SchoolSphere-Pro.';
+        render_view('public/dev.php', array_merge($commonData, [
             'pageTitle'       => $pageTitle,
             'metaDescription' => $metaDescription,
-            'config'          => $config,
-            'site'            => $site,
-            'activePage'      => $page,
-        ]);
+        ]));
+        break;
+
+    case 'design-system':
+        $pageTitle = 'Design System Preview — ' . $config['name'];
+        $metaDescription = 'Preview komponen UI Design System.';
+        render_view('public/design-system.php', array_merge($commonData, [
+            'pageTitle'       => $pageTitle,
+            'metaDescription' => $metaDescription,
+        ]));
+        break;
+
+    case 'kontak':
+        $pageTitle = 'Kontak Kami — ' . $config['name'];
+        $metaDescription = 'Informasi kontak dan lokasi sekolah.';
+        render_view('public/kontak.php', array_merge($commonData, [
+            'pageTitle'       => $pageTitle,
+            'metaDescription' => $metaDescription,
+        ]));
+        break;
+
+    case 'home':
+    default:
+        $pageTitle = $config['name'] . ' — Beranda Sekolah';
+        $metaDescription = 'Selamat datang di website resmi sekolah kami.';
+        render_view('public/home.php', array_merge($commonData, [
+            'pageTitle'       => $pageTitle,
+            'metaDescription' => $metaDescription,
+        ]));
         break;
 }
